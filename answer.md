@@ -14,4 +14,5 @@ whoami
 uname -a
 ```
 
-**Screenshot:** ![Q1 Output]
+**Screenshot:** ![Q1 Output](screenshots/Task 1.png)
+
