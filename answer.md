@@ -258,7 +258,7 @@ Opening an editor like `nano` or `vim` creates a **swap file** (e.g. `.error.log
  
 ---
 
-### Q11 — Open error log using two pager commands (5 marks)
+### Q11 - Open error log using two pager commands (5 marks)
  
 **Commands run:**
 ```bash
@@ -452,12 +452,12 @@ A dangling symlink looks completely normal in a directory listing - it exists, i
  
 | Property | Hard Link | Soft Link |
 |---|---|---|
-| Shares inode with original? | ✅ Yes - same inode number | ❌ No - has its own inode |
-| Works across different filesystems? | ❌ No - inodes are filesystem-specific | ✅ Yes - stores a path, not an inode |
-| Survives deletion of original? | ✅ Yes - data persists until link count = 0 | ❌ No - becomes a dangling symlink |
-| Can link to a directory? | ❌ No (restricted by most Linux filesystems) | ✅ Yes |
-| Shows as `l` in `ls -la`? | ❌ No - looks like a regular file | ✅ Yes |
-| Detectable by matching inodes in `ls -li`? | ✅ Yes - identical inode numbers | ❌ No - different inode from target |
+| Shares inode with original? | Yes - same inode number |  No - has its own inode |
+| Works across different filesystems? |  No - inodes are filesystem-specific |  Yes - stores a path, not an inode |
+| Survives deletion of original? |  Yes - data persists until link count = 0 |  No - becomes a dangling symlink |
+| Can link to a directory? |  No (restricted by most Linux filesystems) |  Yes |
+| Shows as `l` in `ls -la`? |  No - looks like a regular file |  Yes |
+| Detectable by matching inodes in `ls -li`? |  Yes - identical inode numbers |  No - different inode from target |
  
 **Real-server use cases in a DevSecOps context:**
  
