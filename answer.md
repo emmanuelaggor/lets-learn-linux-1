@@ -5,7 +5,7 @@
 
 ## SECTION 1 - Orient Yourself
 
-### Q1 - Print current directory, username, and OS/kernel details (3 marks)
+### Q1 - Print current directory, username, and OS/kernel details
 
 **Commands run:**
 ```bash
@@ -258,7 +258,7 @@ Opening an editor like `nano` or `vim` creates a **swap file** (e.g. `.error.log
  
 ---
 
-### Q11 - Open error log using two pager commands (5 marks)
+### Q11 - Open error log using two pager commands
  
 **Commands run:**
 ```bash
@@ -293,9 +293,9 @@ less logs/errors/error.log
 
 ---
 
-## SECTION 4 - Move and Clean Up (10 marks)
+## SECTION 4 - Move and Clean Up 
  
-### Q12 — Archive error log and rename access log (4 marks)
+### Q12 - Archive error log and rename access log
  
 **Commands run:**
 ```bash
@@ -319,7 +319,7 @@ Yes - `cp` within the same filesystem creates a full physical copy of all data b
  
 ---
  
-### Q13 - Remove empty and non-empty directories (3 marks)
+### Q13 - Remove empty and non-empty directories
  
 **Commands run:**
 ```bash
@@ -343,7 +343,7 @@ rmdir logs/
  
 ---
  
-### Q14 - Display final tree after cleanup (3 marks)
+### Q14 - Display final tree after cleanup
  
 **Command run:**
 ```bash
@@ -421,7 +421,7 @@ An attacker could create a hard link to a malicious file in an obscure, rarely-i
  
 ---
  
-### Q17 - Create symlink, delete original, read broken link (5 marks)
+### Q17 - Create symlink, delete original, read broken link 
  
 **Commands run:**
 ```bash
@@ -501,7 +501,7 @@ cat reports/stderr_output.txt
  
 ---
  
-### Q20 — Write weekly report using heredoc (5 marks)
+### Q20 - Write weekly report using heredoc 
  
 **Command run:**
 ```bash
