@@ -56,7 +56,7 @@ lets-learn-linux-1/
  
 ## 👤 Author
  
-**Emmanuel**
+**Emmanuel Selasie Aggor**
 BSc Information Technology — University of Cape Coast, Ghana
 Cybersecurity & DevSecOps Enthusiast
  
