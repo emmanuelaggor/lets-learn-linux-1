@@ -97,7 +97,7 @@ Yes — you could run `mkdir -p` multiple times, once per directory. But that is
  
 ---
  
-### Q5 — Create five empty placeholder files in one command (4 marks)
+### Q5 - Create five empty placeholder files in one command (4 marks)
  
 **Command run:**
 ```bash
@@ -107,17 +107,17 @@ touch configs/app.conf configs/db.conf logs/access/access.log logs/errors/error.
 **Answers:**
  
 **What does `touch` do beyond creating files?**
-`touch` updates the **access timestamp** and **modification timestamp** (mtime) of a file to the current time. If the file does not exist, it creates it as an empty file. If it does exist, only the timestamps change — the content is untouched.
+`touch` updates the **access timestamp** and **modification timestamp** (mtime) of a file to the current time. If the file does not exist, it creates it as an empty file. If it does exist, only the timestamps change - the content is untouched.
  
 **What happens if you run it on an existing file?**
 The file content is preserved but its timestamps are updated. Running `ls -l` before and after shows that the "last modified" date/time changes even though the file size remains the same (still 0 bytes for a new file, or whatever it was for an existing one).
  
 **Why does this matter in automation scripts?**
-Many automation tools (Make, Ansible, build systems) use timestamps to decide whether a file needs to be reprocessed. `touch` lets you "fake" a modification to trigger a rebuild without changing content. In log rotation and pipeline scripts, accidentally overwriting a file with `>` instead of using `touch` would destroy data — understanding `touch` helps engineers choose the right tool for the right job.
+Many automation tools (Make, Ansible, build systems) use timestamps to decide whether a file needs to be reprocessed. `touch` lets you "fake" a modification to trigger a rebuild without changing content. In log rotation and pipeline scripts, accidentally overwriting a file with `>` instead of using `touch` would destroy data - understanding `touch` helps engineers choose the right tool for the right job.
  
 ---
  
-### Q6 — List configs/ in long format with human-readable sizes (3 marks)
+### Q6 - List configs/ in long format with human-readable sizes (3 marks)
  
 **Command run:**
 ```bash
@@ -127,7 +127,7 @@ ls -lh ~/projects/cyphercore/configs/
 **Answers:**
  
 **What do the file sizes tell you?**
-Both `app.conf` and `db.conf` show a size of `0` (or `0B` with `-h`). This confirms they are empty placeholder files — they exist in the filesystem with valid inodes but contain no data yet. This is expected at this stage; scripts can check for their existence without needing content.
+Both `app.conf` and `db.conf` show a size of `0` (or `0B` with `-h`). This confirms they are empty placeholder files - they exist in the filesystem with valid inodes but contain no data yet. This is expected at this stage; scripts can check for their existence without needing content.
  
 **Permission string breakdown** (example: `-rw-r--r--`):
  
@@ -139,8 +139,26 @@ Both `app.conf` and `db.conf` show a size of `0` (or `0B` with `-h`). This confi
 | `r--` | Others permissions: read ✓, write ✗, execute ✗ |
  
 **What does `-h` add?**
-The `-h` (human-readable) flag converts raw byte counts into readable units — bytes, KB, MB, GB — instead of showing raw numbers. For example, a 1048576-byte file shows as `1.0M`. Essential when scanning a log directory to quickly spot abnormally large files.
+The `-h` (human-readable) flag converts raw byte counts into readable units - bytes, KB, MB, GB - instead of showing raw numbers. For example, a 1048576-byte file shows as `1.0M`. Essential when scanning a log directory to quickly spot abnormally large files.
  
 ---
 
-
+### Q7 — Display full tree of ~/projects/cyphercore (3 marks)
+ 
+**Command run:**
+```bash
+tree ~/projects/cyphercore
+```
+ 
+**Screenshot:** ![Q7 Tree](screenshots/task7.png)
+ 
+**Answers:**
+ 
+**How is `tree` different from `ls -R`?**
+`ls -R` recursively lists directories but outputs them as flat text blocks — each subdirectory is listed separately with its path as a header, making the structure hard to read. `tree` renders the same information as a visual branching diagram with indentation and connecting lines, making the hierarchy immediately clear at a glance.
+ 
+**When would a DevSecOps engineer run `tree` on a live server?**
+- During **incident response** to quickly map an unfamiliar application's directory layout and spot unexpected files or directories (e.g. a hidden `.git` folder in `/var/www/` or unusual binaries in `/tmp/`)
+- During **configuration audits** to verify that a deployment matches the expected structure before handing off to staging
+- When **investigating a compromised server** to identify new directories created by an attacker that shouldn't be there
+---
