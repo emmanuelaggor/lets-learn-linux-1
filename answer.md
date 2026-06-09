@@ -14,7 +14,7 @@ whoami
 uname -a
 ```
 
-**Screenshot:** ![Q1 Output](screenshots/task1.png)
+**Screenshot:** ![Q1 Output](screenshots/q1.png)
 
 **Answers:**
 
@@ -60,7 +60,7 @@ Without FHS: automated deployment scripts that assume `/etc/nginx/` or `/var/log
 ls ~
 ls -la ~
 ```
-**Screenshot:** ![Q3 Output](screenshots/task3.png)
+**Screenshot:** ![Q3 Output](screenshots/q3.png)
 
 **What is different between the two outputs?**
 The second command (`ls -la`) reveals hidden files and directories - those whose names begin with a `.` (dot). It also shows full details: file permissions, number of hard links, owner, group, file size in bytes, last modified date, and filename. The first command (`ls`) shows only non-hidden files and no metadata.
@@ -84,7 +84,7 @@ A file is hidden simply by naming it with a `.` prefix (e.g. `.bashrc`). It is n
 mkdir -p ~/projects/cyphercore/{configs,logs/{access,errors,archive},reports}
 ```
 
-**Screenshot (tree output):** ![Q4 Tree](screenshots/task4.png)
+**Screenshot (tree output):** ![Q4 Tree](screenshots/q4.png)
  
 **Answers:**
  
@@ -150,7 +150,7 @@ The `-h` (human-readable) flag converts raw byte counts into readable units - by
 tree ~/projects/cyphercore
 ```
  
-**Screenshot:** ![Q7 Tree](screenshots/task7.png)
+**Screenshot:** ![Q7 Tree](screenshots/q7.png)
  
 **Answers:**
  
@@ -174,7 +174,7 @@ echo "2025-06-02 08:15:10 ERROR Database connection timeout — retrying (attemp
 cat logs/access/access.log
 ```
  
-**Screenshot:** ![Q8 Output](screenshots/task8.png)
+**Screenshot:** ![Q8 Output](screenshots/q8.png)
  
 **Answers:**
  
@@ -224,7 +224,7 @@ EOF
 cat logs/errors/error.log
 ```
  
-**Screenshot:** ![Q10 Output](screenshots/task10.png)
+**Screenshot:** ![Q10 Output](screenshots/q10.png)
  
 **Answers:**
  
@@ -249,7 +249,7 @@ EOF
 # Output: Database: $DBNAME
 ```
  
-**Screenshot:** ![Q10 Heredoc Comparison](screenshots/task10heredoc.png)
+**Screenshot:** ![Q10 Heredoc Comparison](screenshots/q10heredoc.png)
  
 With an **unquoted** delimiter, Bash performs variable expansion, command substitution, and arithmetic inside the heredoc - `$DBNAME` becomes `cyphercore`. With a **quoted** delimiter (`'EOF'`), the entire block is treated as a raw string - nothing is expanded, `$DBNAME` prints literally.
  
@@ -304,7 +304,7 @@ mv logs/access/access.log logs/access/access_2025-06-02.log
 ls logs/access/ logs/archive/
 ```
  
-**Screenshot:** ![Q12 Output](screenshots/task12.png)
+**Screenshot:** ![Q12 Output](screenshots/q12.png)
  
 **Answers:**
  
@@ -350,7 +350,7 @@ rmdir logs/
 tree ~/projects/cyphercore
 ```
  
-**Screenshot:** ![Q14 Tree](screenshots/task14.png)
+**Screenshot:** ![Q14 Tree](screenshots/q14.png)
  
 **Answers:**
  
@@ -376,7 +376,7 @@ ln configs/db.conf configs/db_hardlink.conf
 ls -li configs/
 ```
  
-**Screenshot:** ![Q15 Output](screenshots/task15.png)
+**Screenshot:** ![Q15 Output](screenshots/q15.png)
  
 **Answers:**
  
@@ -400,7 +400,7 @@ cat configs/db_hardlink.conf
 ls -li configs/
 ```
  
-**Screenshot:** ![Q16 Output](screenshots/task16.png)
+**Screenshot:** ![Q16 Output](screenshots/q16.png)
  
 **Answers:**
  
@@ -433,7 +433,7 @@ rm configs/app.conf
 cat ~/projects/cyphercore/app_config_link
 ```
  
-**Screenshot (listing + failed read):** ![Q17 Output](screenshots/task17.png)
+**Screenshot (listing + failed read):** ![Q17 Output](screenshots/q17.png)
  
 **Answers:**
  
@@ -478,7 +478,7 @@ cat reports/stdout_output.txt
 cat reports/stderr_output.txt
 ```
  
-**Screenshot:** ![Q19 Output](screenshots/task19.png)
+**Screenshot:** ![Q19 Output](screenshots/q19.png)
  
 **Answers:**
  
@@ -525,7 +525,7 @@ EOF
 cat reports/weekly_report.txt
 ```
  
-**Screenshot:** ![Q20 Output](screenshots/task20.png)
+**Screenshot:** ![Q20 Output](screenshots/q20.png)
  
 **Answers:**
  
@@ -550,7 +550,7 @@ EOF
 # Output: Analyst: $ANALYST
 ```
  
-**Screenshot:** ![Q20 Variable Comparison](screenshots/task20variable.png)
+**Screenshot:** ![Q20 Variable Comparison](screenshots/q20variable.png)
  
 **When to use each in a real script:**
  
@@ -581,7 +581,7 @@ EOF
 tree ~/projects/cyphercore
 ```
  
-**Screenshot:** ![Q21 Final Tree](screenshots/task21.png)
+**Screenshot:** ![Q21 Final Tree](screenshots/q21tree.png)
  
 **Answers:**
  
