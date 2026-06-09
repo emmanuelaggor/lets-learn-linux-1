@@ -44,3 +44,20 @@ ls /
 | `/home` | Home directories for regular users. Contains user files, bash history, SSH keys. |
 | `/bin` | Essential user binaries (commands like `ls`, `cp`, `cat`). Available to all users, needed even in single-user/recovery mode. |
 | `/tmp` | Temporary files, world-writable. Attackers often use this to stage malicious files - a key directory to monitor. |
+
+**What is the Filesystem Hierarchy Standard (FHS)?**
+The FHS is a specification that defines the directory structure and content of Linux/Unix systems. It standardises where different types of files live so that software, scripts, and administrators can reliably find them regardless of which Linux distribution is in use.
+ 
+**What breaks on a shared production server without it?**
+Without FHS: automated deployment scripts that assume `/etc/nginx/` or `/var/log/` break silently; log agents (like Filebeat or Splunk forwarders) cannot find log paths; security monitoring tools (IDS/SIEM) fail to collect events; and multiple engineers working on the same server cannot predict where configuration or data files are - causing dangerous inconsistencies in a production environment.
+
+---
+
+### Q3 - List home directory with and without hidden files
+
+**Commands run:**
+```bash
+ls ~
+ls -la ~
+```
+**Screenshot:** ![Q3 Output](screenshots/q3.png)
