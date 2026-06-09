@@ -293,7 +293,7 @@ less logs/errors/error.log
 
 ---
 
-## 🟡 SECTION 4 - Move and Clean Up (10 marks)
+## SECTION 4 - Move and Clean Up (10 marks)
  
 ### Q12 — Archive error log and rename access log (4 marks)
  
