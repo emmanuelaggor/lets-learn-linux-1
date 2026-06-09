@@ -97,7 +97,7 @@ Yes — you could run `mkdir -p` multiple times, once per directory. But that is
  
 ---
  
-### Q5 - Create five empty placeholder files in one command (4 marks)
+### Q5 - Create five empty placeholder files in one command
  
 **Command run:**
 ```bash
@@ -117,7 +117,7 @@ Many automation tools (Make, Ansible, build systems) use timestamps to decide wh
  
 ---
  
-### Q6 - List configs/ in long format with human-readable sizes (3 marks)
+### Q6 - List configs/ in long format with human-readable sizes
  
 **Command run:**
 ```bash
@@ -143,7 +143,7 @@ The `-h` (human-readable) flag converts raw byte counts into readable units - by
  
 ---
 
-### Q7 — Display full tree of ~/projects/cyphercore (3 marks)
+### Q7 - Display full tree of ~/projects/cyphercore
  
 **Command run:**
 ```bash
@@ -155,10 +155,105 @@ tree ~/projects/cyphercore
 **Answers:**
  
 **How is `tree` different from `ls -R`?**
-`ls -R` recursively lists directories but outputs them as flat text blocks — each subdirectory is listed separately with its path as a header, making the structure hard to read. `tree` renders the same information as a visual branching diagram with indentation and connecting lines, making the hierarchy immediately clear at a glance.
+`ls -R` recursively lists directories but outputs them as flat text blocks - each subdirectory is listed separately with its path as a header, making the structure hard to read. `tree` renders the same information as a visual branching diagram with indentation and connecting lines, making the hierarchy immediately clear at a glance.
  
 **When would a DevSecOps engineer run `tree` on a live server?**
 - During **incident response** to quickly map an unfamiliar application's directory layout and spot unexpected files or directories (e.g. a hidden `.git` folder in `/var/www/` or unusual binaries in `/tmp/`)
 - During **configuration audits** to verify that a deployment matches the expected structure before handing off to staging
 - When **investigating a compromised server** to identify new directories created by an attacker that shouldn't be there
+---
+## SECTION 3 - Write and Read Files 
+ 
+### Q8 - Append three log lines to access.log
+ 
+**Commands run:**
+```bash
+echo "2025-06-02 08:14:33 INFO  Application started successfully" >> logs/access/access.log
+echo "2025-06-02 08:14:55 WARN  High memory usage detected: 87%" >> logs/access/access.log
+echo "2025-06-02 08:15:10 ERROR Database connection timeout — retrying (attempt 1/3)" >> logs/access/access.log
+cat logs/access/access.log
+```
+ 
+**Screenshot:** ![Q8 Output](screenshots/task8.png)
+ 
+**Answers:**
+ 
+**Difference between `>` and `>>`:**
+- `>` **overwrites** - it truncates the file to zero bytes and writes fresh content. If the file doesn't exist, it creates it.
+- `>>` **appends** - it adds new content to the end of the existing file. If the file doesn't exist, it creates it.
+**Demonstration:**
+Running `echo "2025-06-02 08:14:33 INFO  Application started successfully" > logs/access/access.log` with `>` destroys the other two lines - the file now contains only that one line. The first two appended lines are permanently gone.
+ 
+**Why is confusing these dangerous in a production log rotation script?**
+A log rotation script that uses `>` instead of `>>` to write a new log entry would silently wipe the entire existing log file -destroying evidence of every event that occurred before that moment. In a security incident, this could erase the audit trail needed for forensic investigation, compliance reporting, or legal proceedings. The mistake is silent - no error is thrown, the file still exists, it just has no useful history.
+ 
+---
+
+### Q9 - Display access log from top and bottom 
+ 
+**Commands run:**
+```bash
+cat logs/access/access.log
+tac logs/access/access.log
+```
+ 
+**Answers:**
+ 
+**Difference between the two:**
+- `cat` (concatenate) reads and prints a file from the **first line to the last** - top to bottom, in chronological order for log files.
+- `tac` is `cat` reversed - it prints from the **last line to the first**. The name is literally "cat" backwards.
+**Which to reach for first in a real incident with an 80,000-line log?**
+`tac` - or more precisely, `tail`. In a live incident, the most recent events are what matter. Reading 80,000 lines from the top means scrolling through hours of normal activity before reaching the moment things went wrong. Starting from the bottom puts you immediately at the most recent (and most relevant) events.
+
+**Third command that shows only the last 10 lines:**
+```bash
+tail logs/access/access.log
+```
+`tail` defaults to the last 10 lines. Use `tail -n 50` for the last 50, or `tail -f` to **follow** a log in real time - essential during active incident monitoring.
+ 
+---
+
+**Command run:**
+```bash
+cat >> logs/errors/error.log << EOF
+2025-06-02 08:15:10 ERROR    Database connection timeout — retrying (attempt 1/3)
+2025-06-02 08:15:13 ERROR    Database connection timeout — retrying (attempt 2/3)
+2025-06-02 08:15:16 CRITICAL Database connection failed — all retries exhausted
+2025-06-02 08:15:16 CRITICAL Triggering failover to secondary DB at 10.0.0.52
+EOF
+cat logs/errors/error.log
+```
+ 
+**Screenshot:** ![Q10 Output](screenshots/task10.png)
+ 
+**Answers:**
+ 
+**What is a heredoc and what does it solve?**
+A heredoc (here document) is a way to pass a multi-line block of text to a command directly within a script or terminal session. It starts with `<<` followed by a delimiter word (commonly `EOF`). Everything typed between the opening and closing delimiter is treated as input. It solves the problem of having to run `echo` once per line - which is tedious, error-prone, and unreadable in scripts with many lines.
+ 
+**Difference between `'EOF'` (quoted) and `EOF` (unquoted):**
+ 
+```bash
+DBNAME=cyphercore
+ 
+# Unquoted — variable IS expanded
+cat << EOF
+Database: $DBNAME
+EOF
+# Output: Database: cyphercore
+ 
+# Quoted — variable is NOT expanded (literal)
+cat << 'EOF'
+Database: $DBNAME
+EOF
+# Output: Database: $DBNAME
+```
+ 
+**Screenshot:** ![Q10 Heredoc Comparison](screenshots/task10heredoc.png)
+ 
+With an **unquoted** delimiter, Bash performs variable expansion, command substitution, and arithmetic inside the heredoc - `$DBNAME` becomes `cyphercore`. With a **quoted** delimiter (`'EOF'`), the entire block is treated as a raw string - nothing is expanded, `$DBNAME` prints literally.
+ 
+**Why might someone on a compromised server prefer heredoc over nano/vim?**
+Opening an editor like `nano` or `vim` creates a **swap file** (e.g. `.error.log.swp`) and may write to shell history differently. A heredoc executed in a terminal only appears in `.bash_history` as a single command invocation - the multi-line content is less visible to basic forensic history review. Additionally, editors leave behind temporary files and may be logged by auditd at the file-open level. A heredoc writes content in one atomic operation. However, a thorough forensic investigator would still recover the content from memory or audit logs - so this is not true hiding, just reducing obvious traces.
+ 
 ---
