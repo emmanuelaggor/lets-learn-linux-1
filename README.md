@@ -1,4 +1,4 @@
-# 🐧 Let's Learn Linux — Assignment 1
+# 🐧 Let's Learn Linux - Assignment 1
 fParoCyberDevSecOps Bootcamp**
  
 ---
@@ -7,7 +7,7 @@ fParoCyberDevSecOps Bootcamp**
  
 This repository contains my completed work for the **LetsLearnLinux1** assignment from the ParoCyber DevSecOps Bootcamp, facilitated by **Samuel Nartey**.
  
-The assignment simulates a real first day at a DevSecOps job — setting up a deployment environment, writing and managing log files, working with hard and soft links, and understanding Linux data streams and redirection.
+The assignment simulates a real first day at a DevSecOps job - setting up a deployment environment, writing and managing log files, working with hard and soft links, and understanding Linux data streams and redirection.
  
 ---
  
@@ -26,12 +26,12 @@ lets-learn-linux-1/
  
 | Section | Topic | Marks |
 |---------|-------|-------|
-| Section 1 | Orient Yourself — `pwd`, `whoami`, `uname`, FHS | 10 |
-| Section 2 | Build the Environment — `mkdir`, `touch`, `tree` | 15 |
-| Section 3 | Write and Read Files — `echo`, `cat`, heredoc, pagers | 20 |
-| Section 4 | Move and Clean Up — `cp`, `mv`, `rmdir`, `rm` | 10 |
-| Section 5 | Links and Inodes — hard links, soft links, inode table | 20 |
-| Section 6 | Data Streams and Redirection — stdin, stdout, stderr | 15 |
+| Section 1 | Orient Yourself - `pwd`, `whoami`, `uname`, FHS | 10 |
+| Section 2 | Build the Environment - `mkdir`, `touch`, `tree` | 15 |
+| Section 3 | Write and Read Files - `echo`, `cat`, heredoc, pagers | 20 |
+| Section 4 | Move and Clean Up - `cp`, `mv`, `rmdir`, `rm` | 10 |
+| Section 5 | Links and Inodes - hard links, soft links, inode table | 20 |
+| Section 6 | Data Streams and Redirection - stdin, stdout, stderr | 15 |
  
 ---
  
@@ -48,8 +48,8 @@ lets-learn-linux-1/
  
 ## 💡 Key Takeaways
  
-- A filename is just a pointer to an inode — deleting a file doesn't destroy data if hard links still exist
-- `stderr` (stream 2) and `stdout` (stream 1) are separate — always think about where errors are going in scripts
+- A filename is just a pointer to an inode - deleting a file doesn't destroy data if hard links still exist
+- `stderr` (stream 2) and `stdout` (stream 1) are separate - always think about where errors are going in scripts
 - Brace expansion + `mkdir -p` can build an entire directory tree in one command
 - A quoted heredoc (`<< 'EOF'`) treats content as literal text; unquoted expands variables
 ---
@@ -57,9 +57,9 @@ lets-learn-linux-1/
 ## 👤 Author
  
 **Emmanuel Selasie Aggor**
-BSc Information Technology — University of Cape Coast, Ghana
+BSc Information Technology - University of Cape Coast, Ghana
 Cybersecurity & DevSecOps Enthusiast
  
 ---
  
-*This assignment is part of the DevSecOps training organised by @ParoCyber and facilitated by @Samuel Nartey.*
+*This assignment is part of the DevSecOps training organised by @Parocyber and facilitated by @Samuel Nartey Otuafo.*
