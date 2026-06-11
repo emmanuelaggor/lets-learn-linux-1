@@ -62,4 +62,4 @@ Cybersecurity & DevSecOps Enthusiast
  
 ---
  
-*This assignment is part of the DevSecOps training organised by @Parocyber and facilitated by @Samuel Nartey Otuafo.*
+*This assignment is part of the DevSecOps training organised by @Parocyber and facilitated by @Samuel Nartey .*
